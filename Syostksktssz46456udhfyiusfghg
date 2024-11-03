@@ -1,7 +1,12 @@
 local key = _G.Key
 local check = "https://raw.githubusercontent.com/Script-dot/PNPHUB/refs/heads/main/check.php?key=" .. key
-if game:HttpGet(check) == "Whitelisted" then
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Script-dot/PNPHUB/refs/heads/main/Script.lua"))()
+
+local success, response = pcall(function()
+    return game:HttpGet(check)
+end)
+
+if success and response == "Whitelisted" then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Script-dot/PNPHUB/refs/heads/main/Script.lua"))()
 else
-game.Players.LocalPlayer:Kick("You don't have a key")
+    game.Players.LocalPlayer:Kick("Invalid Key: Please make sure your key is correct.")
 end
