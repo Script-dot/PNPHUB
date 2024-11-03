@@ -3,5 +3,5 @@ local check = "https://raw.githubusercontent.com/Script-dot/PNPHUB/refs/heads/ma
 if game:HttpGet(check) == "Whitelisted" then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Script-dot/PNPHUB/refs/heads/main/Script.lua"))()
 else
-game.Players.LocalPlayer:Kick("Invalid Key! Please Rejoin And Try Again.")
+game.Players.LocalPlayer:Kick("You don't have a key.")
 end
