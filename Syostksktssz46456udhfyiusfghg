@@ -8,5 +8,3 @@ end)
 if success and response == "Whitelisted" then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Script-dot/PNPHUB/refs/heads/main/Script.lua"))()
 else
-    game.Players.LocalPlayer:Kick("Invalid Key: Please make sure your key is correct.")
-end
