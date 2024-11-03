@@ -1,7 +1,7 @@
 local key = _G.Key
 local check = "https://github.com/Script-dot/PNPHUB/blob/main/check.phphttps://github.com/Script-dot/PNPHUB/blob/main/check.php?key=" .. key
 if game:HttpGet(check) == "Whitelisted" then
-loadstring(game:HttpGet("https://github.com/Script-dot/PNPHUB/blob/main/Script.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Script-dot/PNPHUB/refs/heads/main/Script.lua"))()
 else
 game.Players.LocalPlayer:Kick("Invalid Key! Please Rejoin And Try Again.")
 end
