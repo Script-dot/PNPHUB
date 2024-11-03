@@ -1,10 +1,3 @@
-local mapIDs = {16732694052, 1586649844}
-
-if not table.find(mapIDs, game.PlaceId) then
-    game.Players.LocalPlayer:Kick("คุณโดนเตะออกจากเกม")
-    return
-end
-
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
 local Window = OrionLib:MakeWindow({
     Name = "PNP_HUB V6.PRO",
