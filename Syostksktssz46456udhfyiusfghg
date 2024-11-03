@@ -1,5 +1,5 @@
 local key = _G.Key
-local check = "https://raw.githubusercontent.com/Script-dot/PNPHUB/refs/heads/main/check.php?key=" .. key
+local check = "https://raw.githubusercontent.com/Script-dot/PNPHUB/refs/heads/main/check.lua?key=" .. key
 
 local success, response = pcall(function()
     return game:HttpGet(check)
