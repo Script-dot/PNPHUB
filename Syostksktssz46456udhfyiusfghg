@@ -1,14 +1,26 @@
+-- กำหนดค่า Key ที่ต้องการ
+_G.Key = "key1"
 local key = _G.Key
 local keys = "https://raw.githubusercontent.com/Script-dot/PNPHUB/refs/heads/main/keys.lua?key=" .. key
 
+-- ตรวจสอบคีย์ด้วยการเรียก HTTP GET
 local success, response = pcall(function()
     return game:HttpGet(keys)
 end)
 
-print("Response from server:", response) -- เพิ่มบรรทัดนี้เพื่อตรวจสอบการตอบกลับจากเซิร์ฟเวอร์
+if success then
+    print("Response from server:", response) -- พิมพ์ค่าการตอบกลับเพื่อตรวจสอบ
 
-if success and response == "Valid" then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Script-dot/PNPHUB/refs/heads/main/Script.lua"))()
+    if response == "Valid" then
+        -- ถ้าคีย์ถูกต้อง ให้โหลดสคริปต์หลัก
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Script-dot/PNPHUB/refs/heads/main/Script.lua"))()
+        print("Key is valid. Script loaded successfully.")
+    else
+        -- ถ้าคีย์ไม่ถูกต้อง ให้เตะผู้เล่นออกจากเกม
+        game.Players.LocalPlayer:Kick("Access denied: Invalid key.")
+    end
 else
-    game.Players.LocalPlayer:Kick("Access denied: Invalid key.")
+    -- ถ้ามีข้อผิดพลาดในการเรียก HTTP
+    print("Error in HTTP request: " .. tostring(response))
+    game.Players.LocalPlayer:Kick("Access denied: HTTP request failed.")
 end
