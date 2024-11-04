@@ -1,10 +1,21 @@
-local key = _G.Key
-local check = "https://raw.githubusercontent.com/Script-dot/PNPHUB/refs/heads/main/check.lua?key=" .. key
+local key = _G.Key -- ดึงค่า key จาก global variable
+local keys = "https://raw.githubusercontent.com/Script-dot/PNPHUB/refs/heads/main/keys.lua?key=" .. key -- สร้าง URL สำหรับตรวจสอบ key
 
+-- ทำการเรียก HTTP GET เพื่อตรวจสอบ key
 local success, response = pcall(function()
-    return game:HttpGet(check)
+    return game:HttpGet(keys)
 end)
 
-if success and response == "Whitelisted" then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Script-dot/PNPHUB/refs/heads/main/Script.lua"))()
+-- ตรวจสอบผลลัพธ์ของการเรียก
+if success then
+    if response == "Whitelisted" then
+        -- ถ้า key ถูกต้อง ให้โหลดสคริปต์จาก URL
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Script-dot/PNPHUB/refs/heads/main/Script.lua"))()
+    else
+        -- ถ้า key ไม่ถูกต้อง เตะผู้เล่นออกจากแมพ
+        game.Players.LocalPlayer:Kick("Access denied: Key not whitelisted.")
+    end
 else
+    -- ถ้ามีข้อผิดพลาดในการเรียก HTTP
+    print("Error in HTTP request: " .. tostring(response))
+end
